@@ -26,7 +26,7 @@ public class AuthController {
     private final UserMapper userMapper;
     private final JwtTokenMapper jwtTokenMapper;
 
-    @PostMapping("sign-up")
+    @PostMapping("/sign-up")
     public ResponseEntity<UserDto> signUp(@RequestBody @Valid UserCreationDto userDto){
         var newUser = userService.create(userMapper.toEntity(userDto));
         return new ResponseEntity<>(userMapper.toPayload(newUser), HttpStatus.CREATED);
