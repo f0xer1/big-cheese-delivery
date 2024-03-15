@@ -1,4 +1,4 @@
-package com.bcd.big_cheese_delivery.web.dto;
+package com.bcd.big_cheese_delivery.web.dto.user;
 
 import lombok.Data;
 
@@ -9,5 +9,4 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String email;
-
 }
