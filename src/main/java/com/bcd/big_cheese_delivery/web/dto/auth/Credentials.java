@@ -1,4 +1,4 @@
-package com.bcd.big_cheese_delivery.web.dto;
+package com.bcd.big_cheese_delivery.web.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
