@@ -23,26 +23,25 @@ public class JwtTokenProvider {
     @Value("${jwt.issuer}")
     private String jwtIssuer;
 
+    @Value("${jwt.expire.days}")
+    private Integer expireDays;
+
     public String generateToken(String username) {
         return JWT.create()
                 .withIssuer(jwtIssuer)
                 .withSubject(username)
                 .withExpiresAt(LocalDate.now()
-                        .plusDays(15)
+                        .plusDays(expireDays)
                         .atStartOfDay(ZoneId.systemDefault())
                         .toInstant())
                 .sign(Algorithm.HMAC256(jwtSecret));
     }
 
-    public Optional<DecodedJWT> toDecodedJWT(String token) {
-        try {
-            return Optional.of(JWT.require(Algorithm.HMAC256(jwtSecret))
-                    .withIssuer(jwtIssuer)
-                    .build()
-                    .verify(token));
-        } catch (JWTVerificationException exception) {
-            return Optional.empty();
-        }
+    public Optional<DecodedJWT> toDecodedJWT(String token) throws JWTVerificationException {
+        return Optional.of(JWT.require(Algorithm.HMAC256(jwtSecret))
+                .withIssuer(jwtIssuer)
+                .build()
+                .verify(token));
     }
 
     public String getUsernameFromToken(String token) {

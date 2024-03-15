@@ -1,5 +1,6 @@
 package com.bcd.big_cheese_delivery.security;
 
+import com.bcd.big_cheese_delivery.exception.UserNotFoundException;
 import com.bcd.big_cheese_delivery.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = userRepository.findByUsername(username).orElseThrow(
-                () -> new UsernameNotFoundException("User with username %s not found".formatted(username))
+                () -> new UserNotFoundException("User with username %s not found".formatted(username))
         );
         return new UserDetailsImpl(user);
     }

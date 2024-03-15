@@ -9,4 +9,8 @@ public interface UserService {
     User create(User user);
 
     Optional<DecodedJWT> signIn(String username, String password);
+
+    Optional<User> findByUsername(String username);
+
+    User update(User user);
 }
