@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import static com.bcd.big_cheese_delivery.web.WebConstants.*;
+
 
 import java.security.Principal;
 
@@ -21,13 +23,13 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-    @GetMapping("/self")
+    @GetMapping(SELF)
     public ResponseEntity<UserDto> getSelf(Principal principal){
         return ResponseEntity.of(userService.findByUsername(principal.getName())
                 .map(userMapper::toPayload));
     }
 
-    @PatchMapping("/self")
+    @PatchMapping(SELF)
     public ResponseEntity<UserDto> updateSelf(Principal principal, @Valid @RequestBody UserUpdateDto userUpdateDto){
         return ResponseEntity.of(userService.findByUsername(principal.getName())
                 .map(user -> userMapper.partialUpdate(userUpdateDto, user))
