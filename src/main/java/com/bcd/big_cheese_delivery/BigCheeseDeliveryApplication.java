@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BigCheeseDeliveryApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BigCheeseDeliveryApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(BigCheeseDeliveryApplication.class, args);
+  }
 
 }
