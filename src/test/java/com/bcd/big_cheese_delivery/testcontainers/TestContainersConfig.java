@@ -8,9 +8,9 @@ import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
 public class TestContainersConfig {
-    @Bean
-    @ServiceConnection
-    public MongoDBContainer mongoDBContainer() {
-        return new MongoDBContainer(DockerImageName.parse("mongo:4.0.10"));
-    }
+  @Bean
+  @ServiceConnection
+  public MongoDBContainer mongoDBContainer() {
+    return new MongoDBContainer(DockerImageName.parse("mongo:4.0.10"));
+  }
 }

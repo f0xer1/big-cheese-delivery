@@ -7,5 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface JwtTokenMapper {
 
-    JwtToken toPayload(DecodedJWT jwt);
+  JwtToken toPayload(DecodedJWT jwt);
 }

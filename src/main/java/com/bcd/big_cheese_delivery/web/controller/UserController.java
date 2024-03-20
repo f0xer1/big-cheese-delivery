@@ -9,10 +9,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import static com.bcd.big_cheese_delivery.web.WebConstants.*;
-
 
 import java.security.Principal;
+
+import static com.bcd.big_cheese_delivery.web.WebConstants.SELF;
 
 @RestController
 @RequestMapping("/api/user")
@@ -20,20 +20,20 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
-    private final UserMapper userMapper;
+  private final UserService userService;
+  private final UserMapper userMapper;
 
-    @GetMapping(SELF)
-    public ResponseEntity<UserDto> getSelf(Principal principal){
-        return ResponseEntity.of(userService.findByUsername(principal.getName())
-                .map(userMapper::toPayload));
-    }
+  @GetMapping(SELF)
+  public ResponseEntity<UserDto> getSelf(Principal principal) {
+    return ResponseEntity.of(userService.findByUsername(principal.getName())
+        .map(userMapper::toPayload));
+  }
 
-    @PatchMapping(SELF)
-    public ResponseEntity<UserDto> updateSelf(Principal principal, @Valid @RequestBody UserUpdateDto userUpdateDto){
-        return ResponseEntity.of(userService.findByUsername(principal.getName())
-                .map(user -> userMapper.partialUpdate(userUpdateDto, user))
-                .map(userService::update)
-                .map(userMapper::toPayload));
-    }
+  @PatchMapping(SELF)
+  public ResponseEntity<UserDto> updateSelf(Principal principal, @Valid @RequestBody UserUpdateDto userUpdateDto) {
+    return ResponseEntity.of(userService.findByUsername(principal.getName())
+        .map(user -> userMapper.partialUpdate(userUpdateDto, user))
+        .map(userService::update)
+        .map(userMapper::toPayload));
+  }
 }
