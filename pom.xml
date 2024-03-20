@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.BCD</groupId>
-    <artifactId>Big_Cheese_Delivery</artifactId>
+    <artifactId>big-cheese-delivery</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Big_Cheese_Delivery</name>
     <description>Big_Cheese_Delivery</description>
@@ -152,5 +152,47 @@
             </plugin>
         </plugins>
     </build>
-
+    <profiles>
+        <profile>
+            <id>checkstyle</id>
+            <properties>
+                <checkstyle.version>10.9.3</checkstyle.version>
+                <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>${maven-checkstyle-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>verify</id>
+                                <!-- Bind to verify so it runs after package & unit tests, but before install -->
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <configLocation>config/checkstyle.xml</configLocation>
+                            <consoleOutput>true</consoleOutput>
+                            <logViolationsToConsole>true</logViolationsToConsole>
+                            <failsOnError>true</failsOnError>
+                            <failOnViolation>true</failOnViolation>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>${checkstyle.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
