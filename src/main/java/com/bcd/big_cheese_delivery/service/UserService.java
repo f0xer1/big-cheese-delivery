@@ -6,11 +6,11 @@ import com.bcd.big_cheese_delivery.domain.User;
 import java.util.Optional;
 
 public interface UserService {
-    User create(User user);
+  User create(User user);
 
-    Optional<DecodedJWT> signIn(String username, String password);
+  Optional<DecodedJWT> signIn(String username, String password);
 
-    Optional<User> findByUsername(String username);
+  Optional<User> findByUsername(String username);
 
-    User update(User user);
+  User update(User user);
 }
