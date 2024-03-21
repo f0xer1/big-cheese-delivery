@@ -1,8 +1,6 @@
-name: Pull Request Workflow
+name: Push Workflow
 
-on:
-  pull_request:
-    branches: [ main ]
+on: [push]
 
 jobs:
   build:
