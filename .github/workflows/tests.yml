@@ -18,4 +18,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn -B install --file pom.xml
+        env:
+          spring_data_mongodb_uri: ${{ secrets.SPRING_DATA_MONGODB_URI }}
+          spring_data_mongodb_database: ${{ secrets.SPRING_DATA_MONGODB_DATABASE }}
+          jwt_secret: ${{ secrets.JWT_SECRET }}
+          jwt_issuer: ${{ secrets.JWT_ISSUER }}
+          jwt_expire_days: ${{ secrets.JWT_EXPIRE_DAYS }}
